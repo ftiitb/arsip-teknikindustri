@@ -1,0 +1,74 @@
+=================================================
+Configuration Form:
+
+DB-CONFIG-SYS
+-db-server	: string, file store
+-db-user	: string, file store
+-db-pass	: string, file store
+-db-name	: string, file store
+
+DB-CONFIG-APP
+-db-server	: string, file store
+-db-user	: string, file store
+-db-pass	: string, file store
+-db-name	: string, file store
+
+SITE-CONFIG
+-site-title	: string, file store
+-sub-site-title	: string, file store
+-menu-title	: (Menu Utama), file store
+
+SURKEL-CONFIG
+auto-number
+-reset-every	: (year,kodesurat)
+uploads
+-surkel-directories	: string, file store
+-surkel-type-files-allow: (pdf,doc,docx), file store
+
+
+=======================================================
+Transactional Module:
+FORM-SURAT-KELUAR
+-Display fields link-uploaded-file belum betul
+-Cek validasi setiap input field dari human error
+
+GRID-SURAT-KELUAR
+-Filter kdsurat,kdarsip,tahun harusnya berupa 
+type LIST dan diisi berdasarkan select distinct
+
+FORM-DISPOSISI
+-NON MANDATORY
+
+
+=======================================================
+MENU-STRUCTURE
+1. Agenda Surat Keluar
+  1.1 SURAT-KELUAR
+  1.2 Arsip Surat Keluar
+  1.3 Referensi 
+    1.3.1 Kode Surat
+    1.3.2 Kode Arsip
+    1.3.3 Pejabat Berwenang
+  1.4 Konfigurasi
+2. Agenda Surat Masuk
+  2.1 SURAT-MASUK
+  2.2 DISPOSISI
+  2.3 File Browser
+  2.4 Referensi
+    2.4.1 Kode Arsip
+    2.4.2 Data Sub-Unit
+    2.4.3 Data Individu
+    2.4.4 Data Intruksi
+  2.4 Konfigurasi
+
+=======================================================
+CHANGED AFTER UPLOAD TO SERVER
+1. create surmas_v.js,surmas_m.php,surmas_c.php: 
+not yet finish
+2. surkel_v.js: combo tooltip <br>
+3. css styleswitcher border
+4. login.php -->border margin
+5. images/layout-browser-hd-bg.png-->change
+6. menu layout database
+7. ganti tipe longtext-> perihal field tabel suratkeluar
+8. ganti legnht 100->255 filearsip field tabel suratkeluar

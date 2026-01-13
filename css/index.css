@@ -1,0 +1,188 @@
+/*
+ * Ext JS Library 2.2
+ * Copyright(c) 2006-2008, Ext JS, LLC.
+ * licensing@extjs.com
+ * 
+ * http://extjs.com/license
+ */
+
+/*===================================
+/*   Basic page styles
+/*===================================*/
+body {
+    font-family:'lucida grande',tahoma,arial,sans-serif;
+    font-size:11px;
+	 /*outline: none; */
+}
+a {
+    color:#15428B;
+}
+a:link, a:visited {
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+
+#header {
+    background: url(../images/layout-browser-hd-bg.png) repeat-x center;
+}
+#header h1 {
+    font-size: 16px;
+    color: #fff;
+    font-weight: normal;
+    padding: 5px 10px;
+}
+#header label {
+    font-size: 13px;
+    color: #fff;
+    font-weight: normal;
+	padding: 5px 10px;
+}
+#winheader {
+	background: url(../images/icon/form-32x32.png) no-repeat scroll left center;
+	padding-top: 15px;
+	padding-left: 30px;
+	height:30px;
+}
+#winheader label {
+    font-size: 16px;
+    color: #fff;
+    font-weight: normal;
+    padding: 0px 10px;
+}
+
+#start-div h2 {
+    font-size: 12px;
+    color: #555;
+    padding-bottom:5px;
+    border-bottom:1px solid #C3D0DF;
+}
+#start-div p {
+    margin: 10px 0;
+}
+
+/*===================================
+/*   Customized layout styles
+/*===================================*/
+.menu-title {
+    background: none repeat scroll 0 0 #D6E3F2;
+    border-color: #DAE6F4 #99BBE8 #99BBE8 #DAE6F4;
+    border-style: solid;
+    border-width: 1px;
+    color: #15428B;
+    display: block;
+    font: bold 10px tahoma,arial,verdana,sans-serif;
+    margin: -2px -2px 0;
+    padding: 3px;
+}
+.x-form-item  {
+	font-size: 11px; 
+}
+.x-form-field{
+	font-size: 11px; 
+}
+
+.x-tree-node div.feeds-node{
+
+    background:#eee url(../images/cmp-bg.gif) repeat-x;
+
+    margin-top:1px;
+
+    border-top:1px solid #ddd;
+
+    border-bottom:1px solid #ccc;
+
+    padding-top:2px;
+
+    padding-bottom:1px;
+
+}
+
+.feeds-node .x-tree-node-icon {
+
+    display:none;
+
+}
+
+#loading
+{
+	position: absolute;
+	background: white;
+	left: 50%;
+	top: 40%;
+	padding: 5px;
+	z-index: 20001;
+	height: auto;
+	background:transparent;
+}
+
+#loading .loading-indicator
+{
+	background:white;
+    padding:5px;
+    margin:0;
+    height:auto;
+}
+#loading-msg
+{
+	font: normal 9pt arial, tahoma, sans-serif;
+	vertical-align: middle;
+	font-weight: bold;
+	margin-top: 15px;
+}
+
+.x-window-dlg .ext-mb-download {
+	background:transparent url(../images/download.gif) no-repeat top left;
+	height:46px;
+}
+
+img.foto {
+    width: 96px;
+    height: 124px;
+    float: left;
+    margin: 0px 5px 0px 0px; 
+}
+span.nama {
+    font-size: 100%;
+    color: #3764A0;
+    font-weight: bold; 
+}
+#action-panel .x-panel {
+	margin-bottom:3px;
+	margin-right:0;
+}
+#action-panel .x-panel-body {
+	border:0 none;
+}
+#action-panel .x-panel-body li {
+	margin:3px;
+}
+#action-panel .x-panel-body li img {
+	width:16px;
+	height:16px;
+	vertical-align:middle;
+	margin-right:2px;
+	margin-bottom:2px;
+}
+#action-panel .x-panel-body li a {
+	text-decoration:none;
+	color:#3764A0;
+}
+#action-panel .x-plain-body {
+	background-color:#cad9ec;
+    padding:3px 0 0 5px;
+}
+.x-air #action-panel .x-plain-body {
+	padding-left:3px;
+}
+#action-panel .x-panel-body li a:hover {
+	text-decoration:underline;
+	color:#15428b;
+}
+
+ .x-check-group-alt {
+     background: #D1DDEF;
+     border-top:1px dotted #B5B8C8;
+     border-bottom:1px dotted #B5B8C8;
+ }

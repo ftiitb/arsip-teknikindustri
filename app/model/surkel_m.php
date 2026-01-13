@@ -1,0 +1,301 @@
+<?php
+class Surkel extends msDB {
+    private $grid;
+	var $surkelUploadDir="app/assets/arsip/surat/keluar/";
+	
+    function  __construct() {
+		$thisyear=date_format(date_create(), 'Y');
+        $this->connect();
+        $this->grid = new Grid;
+        $this->grid->setTable('tu_suratkeluar');
+		$this->grid->setManualFilter(" and tahun = $thisyear");
+        $this->grid->addField(
+                array(
+                    'field' => 'id',
+                    'name'  => 'id',
+                    'primary'=> true,
+                    'meta' => array(
+                      'st' => array('type' => 'int'),
+                      'cm' => array('hidden' => true, 'hideable' => false, 'menuDisabled' => true)
+                    )
+                ));
+        $this->grid->addField(
+                array(
+                    'field' => 'nomor',
+                    'name'  => 'nomor',
+                    'meta' => array(
+                      'st' => array('type' => 'int'),
+                      'cm' => array('header' => 'Nomor','width' => 60,'sortable' => true),
+					  'filter' => array('type' => 'int')
+                    )
+                ));				
+        $this->grid->addField(
+                array(
+                    'field' => 'kodesurat',
+                    'name'  => 'kodesurat',
+                    'meta' => array(
+                      'st' => array('type' => 'string'), 
+                      'cm' => array('header' => 'Kode Surat','width' => 80,'sortable' => true),
+                      'filter' => array('type' => 'string')
+                    )
+                ));
+        $this->grid->addField(
+                array(
+                    'field' => 'kodearsip',
+                    'name'  => 'kodearsip',
+                    'meta' => array(
+                      'st' => array('type' => 'string'), 
+                      'cm' => array('header' => 'Arsip','width' => 150,'align' => 'center','sortable' => true),
+                      'filter' => array('type' => 'string')
+                    )
+                ));
+        $this->grid->addField(
+                array(
+                    'field' => 'tahun',
+                    'name'  => 'tahun',
+                    'meta' => array(
+                      'st' => array('type' => 'string'), 
+                      'cm' => array('header' => 'Tahun','width' => 40)
+                    )
+                ));
+        $this->grid->addField(
+                array(
+                    'field' => 'tanggal',
+                    'name'  => 'tanggal',
+                    'meta' => array(
+                      'st' => array('type' => 'datetime'), 
+                      'cm' => array('header' => 'Tanggal','width' => 90,'align' => 'center', 'sortable' => true),//, 'renderer' => "Ext.util.Format.dateRenderer('m-d-Y')"),
+                      'filter' => array('type' => 'date')
+                    )                
+                ));
+        $this->grid->addField(
+                array(
+                    'field' => 'ditujukan',
+                    'name'  => 'ditujukan',
+                    'meta' => array(
+                      'st' => array('type' => 'string'), 
+                      'cm' => array('header' => 'Ditujukan','width' => 150,'sortable' => true),
+                      'filter' => array('type' => 'string')
+                    )
+                ));
+        $this->grid->addField(
+                array(
+                    'field' => 'perihal',
+                    'name'  => 'perihal',
+                    'meta' => array(
+                      'st' => array('type' => 'string'), 
+                      'cm' => array('header' => 'Perihal','width' => 350,'sortable' => true),
+                      'filter' => array('type' => 'string')
+                    )
+                ));		
+        $this->grid->addField(
+                array(
+                    'field' => 'lampiran',
+                    'name'  => 'lampiran',
+                    'meta' => array(
+                      'st' => array('type' => 'string'), 
+                      'cm' => array('header' => 'Lampiran','width' => 80),
+                      'filter' => array('type' => 'string')
+                    )
+                ));
+        $this->grid->addField(
+                array(
+                    'field' => 'pengirim',
+                    'name'  => 'pengirim',
+                    'meta' => array(
+                      'st' => array('type' => 'string'), 
+                      'cm' => array('header' => 'Pengirim','width' => 170,'sortable' => true),
+                      'filter' => array('type' => 'string')
+                    )
+                ));
+        $this->grid->addField(
+                array(
+                    'field' => 'filearsip',
+                    'name'  => 'filearsip',
+                    'meta' => array(
+                      'st' => array('type' => 'string'), 
+                      'cm' => array('header' => 'File','width' => 40,'sortable' => true,'align' => 'center', 'renderer' => 'renderIkon(val)'),
+                      'filter' => array('type' => 'string')
+                    )
+                ));
+        $this->grid->addField(
+                array(
+                    'field' => 'addby',
+                    'name'  => 'addby',
+                    'meta' => array(
+                      'st' => array('type' => 'int'),
+                      'cm' => array('hidden' => true, 'hideable' => false,'header' => 'Add By','width' => 60, 'sortable' => false,'align' => 'center', 'menuDisabled' => true)
+                    )
+                ));
+        $this->grid->addField(
+                array(
+                    'field' => 'addon',
+                    'name'  => 'addon',
+                    'meta' => array(
+                      'st' => array('type' => 'datetime'),
+                      'cm' => array('hidden' => true, 'hideable' => false,'header' => 'Add On','width' => 120, 'sortable' => false,'align' => 'center', 'menuDisabled' => true)
+                    )
+                ));
+        $this->grid->addField(
+                array(
+                    'field' => 'lasteditby',
+                    'name'  => 'lasteditby',
+                    'meta' => array(
+                      'st' => array('type' => 'int'),
+                      'cm' => array('hidden' => true, 'hideable' => false,'header' => 'Edit By','width' => 60,'sortable' => false,'align' => 'center', 'menuDisabled' => true)
+                    )
+                ));
+        $this->grid->addField(
+                array(
+                    'field' => 'lastediton',
+                    'name'  => 'lastediton',
+                    'meta' => array(
+                      'st' => array('type' => 'datetime'),
+                      'cm' => array('hidden' => true, 'hideable' => false,'header' => 'Edit On','width' => 120, 'sortable' => false,'align' => 'center', 'menuDisabled' => true)
+                    )
+                ));
+
+    }
+		
+	function create($post){
+		//uploading file
+		$file_arsip=$this->uploadsurkel($post);
+	
+		/** start build query **/
+		$this->db->BeginTrans(); 
+
+		$str ="INSERT INTO tu_suratkeluar (nomor,kodesurat,kodearsip,tahun,tanggal,ditujukan,perihal,lampiran,pengirim,filearsip,addBy,addOn) 
+			   SELECT IFNULL(max(surkel.nomor)+1,1), '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', %s, NOW()
+			   FROM tu_suratkeluar surkel WHERE surkel.tahun='%s'";
+		
+		$post_tanggal=date_format(date_create($post['tanggal']), 'Y-m-d');
+		
+		$query= sprintf($str,mysql_real_escape_string($post['kodesurat']),
+							 mysql_real_escape_string($post['kodearsip']),
+							 mysql_real_escape_string($post['tahun']),
+							 mysql_real_escape_string($post_tanggal),
+							 mysql_real_escape_string($post['ditujukan']),
+							 mysql_real_escape_string($post['perihal']),
+							 mysql_real_escape_string($post['lampiran']),
+							 mysql_real_escape_string($post['pengirim']),
+							 mysql_real_escape_string($file_arsip),
+							 mysql_real_escape_string($post['userid']),							 
+							 mysql_real_escape_string($post['tahun'])); 
+						                      
+		$this->setSQL($query);   
+ 
+		$ok = $this->executeSQL();
+		
+		if ($ok)
+			$this->db->CommitTrans(); 
+		else
+			$this->db->RollbackTrans(); 
+		/** end build query **/
+	
+		$result = new stdClass(); 
+		$result->success = ($ok)?true:false; 
+		$result->message = $this->db->ErrorMsg(); 
+    
+		return json_encode($result); 
+	
+	}
+	function uploadsurkel($post){
+		if(($_FILES["filetoupload"]["type"] == "application/pdf") || ($_FILES["filetoupload"]["type"] == "application/msword")){
+			$filedir="app/assets/arsip/surat/keluar/".date_format(date_create($post['tanggal']), 'Y')."/".date_format(date_create($post['tanggal']), 'm');
+			if(!is_dir($filedir)){ 
+				mkdir($filedir, 0777,true);
+				copy("app/index.php",$filedir."/index.php");
+			}
+			
+			$filedir = $filedir."/";
+			
+			$SafeFile = $_FILES['filetoupload']['name'];
+			$SafeFile = str_replace("#", "No.", $SafeFile);
+			$SafeFile = str_replace("$", "Dollar", $SafeFile);
+			$SafeFile = str_replace("%", "Percent", $SafeFile);
+			$SafeFile = str_replace("^", "", $SafeFile);
+			$SafeFile = str_replace("&", "and", $SafeFile);
+			$SafeFile = str_replace("*", "", $SafeFile);
+			$SafeFile = str_replace("?", "", $SafeFile); 
+			
+			
+			if(move_uploaded_file($_FILES['filetoupload']['tmp_name'],$filedir.$SafeFile)){
+				return $filedir.$SafeFile;
+			}else{ 
+				return NULL;
+			}
+		}else{
+			return NULL;
+		}
+	}
+
+	function update($post){
+	
+		$post_tanggal=date_format(date_create($post['tanggal']), 'Y-m-d');
+		//uploading file
+		if ($_FILES['filetoupload']['size'] === 0){
+			$str ="UPDATE tu_suratkeluar SET kodesurat='%s',kodearsip='%s',tanggal='%s',ditujukan='%s',perihal='%s',lampiran='%s',pengirim='%s',lasteditBy=%s,lasteditOn=NOW() WHERE tu_suratkeluar.id=%s";
+			$query= sprintf($str,mysql_real_escape_string($post['kodesurat']),
+								 mysql_real_escape_string($post['kodearsip']),
+								 mysql_real_escape_string($post_tanggal),
+								 mysql_real_escape_string($post['ditujukan']),
+								 mysql_real_escape_string($post['perihal']),
+								 mysql_real_escape_string($post['lampiran']),
+								 mysql_real_escape_string($post['pengirim']),
+								 mysql_real_escape_string($post['userid']),							 
+								 mysql_real_escape_string($post['id'])); 			
+		}else{
+			$file_arsip=$this->uploadsurkel($post);
+			$str ="UPDATE tu_suratkeluar SET kodesurat='%s',kodearsip='%s',tanggal='%s',ditujukan='%s',perihal='%s',lampiran='%s',pengirim='%s',filearsip='%s',lasteditBy=%s,lasteditOn=NOW() WHERE tu_suratkeluar.id=%s";
+			
+			$query= sprintf($str,mysql_real_escape_string($post['kodesurat']),
+								 mysql_real_escape_string($post['kodearsip']),
+								 mysql_real_escape_string($post_tanggal),
+								 mysql_real_escape_string($post['ditujukan']),
+								 mysql_real_escape_string($post['perihal']),
+								 mysql_real_escape_string($post['lampiran']),
+								 mysql_real_escape_string($post['pengirim']),
+								 mysql_real_escape_string($file_arsip),
+								 mysql_real_escape_string($post['userid']),							 
+								 mysql_real_escape_string($post['id'])); 
+		}
+		/** start build query **/
+		$this->db->BeginTrans(); 
+				                      
+		$this->setSQL($query);   
+ 
+		$ok = $this->executeSQL();
+		
+		if ($ok)
+		  $this->db->CommitTrans(); 
+		else
+		  $this->db->RollbackTrans(); 
+		/** end build query **/
+
+		$result = new stdClass(); 
+		$result->success = ($ok)?true:false; 
+		$result->message = $this->db->ErrorMsg(); 
+		
+		return json_encode($result); 
+		
+	}
+	
+    function edit($id,$request){
+       $this->grid->loadSingle = true;
+       $this->grid->setManualFilter(" and id = $id"); 
+       return $this->grid->doRead($request); 
+    }
+    
+    function read($request){
+        return $this->grid->doRead($request);
+    }
+	
+    function doReport($request){
+      return $this->grid->dosql($request); 
+    }
+
+    function destroy($request){
+        return $this->grid->doDestroy($request);
+    }
+}
+?>
